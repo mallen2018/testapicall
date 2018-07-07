@@ -29,22 +29,24 @@
 
       // Constructing a URL to search Giphy for the name of the person who said the quote
       //updated response encoding and version id has to be 1061 2 weeks ago to work. every 2 weeks they change version id's so if any issues might need to update but has to stay a week behind updates to work
-      //update to https was causing mixed error-- ebay does not allow https ajax call reverted back to http changed to https production environment call to see if that will work doesnt work with jsonp work around so reverted back to http shopping open call
-      var queryURL = "http://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&callbackname=jsonpresponse&appid=BrandenH-MarvelSi-PRD-6668815a4-427e2463&siteid=0&version=1061&QueryKeywords=marvel%20spiderman%20comic&AvailableItemsOnly=true&MaxEntries=10";
+      //update to https was causing mixed error-- ebay does not allow https ajax call reverted back to http changed to https production environment call to see if that will work doesnt work with jsonp work around so reverted back to http shopping open call. Adjusted jsonp work arounds and callback functions to adjust for cors issue"
+      var queryURL = "http://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&callbackname=callback&appid=BrandenH-MarvelSi-PRD-6668815a4-427e2463&siteid=0&version=1061&QueryKeywords=marvel%20spiderman%20comic&AvailableItemsOnly=true&MaxEntries=10";
 
 
       // Performing our AJAX GET request
       $.ajax({
         url: queryURL,
-        method: "GET"
+        method: "GET",
         dataType: "jsonp",
-        jsonpCallback: "jsonpresponse"
+        crossDomain:true,
+        jsonp:"false",
+        jsonpCallback: "callback"
       })
         // After the data comes back from the API
-        .then(function(jsonpCallback) {
-            console.log(jsonpCallback);
+        .then(function(callback) {
+            console.log(callback);
           // Storing an array of results in the results variable
-          var results = jsonpCallback.data;
+          var results = callback.data;
 
           // Looping over every result item
           for (var i = 0; i < results.length; i++) {
