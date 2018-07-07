@@ -30,7 +30,7 @@
       // Constructing a URL to search Giphy for the name of the person who said the quote
       //updated response encoding and version id has to be 1061 2 weeks ago to work. every 2 weeks they change version id's so if any issues might need to update but has to stay a week behind updates to work
       //update to https was causing mixed error-- ebay does not allow https ajax call reverted back to http changed to https production environment call to see if that will work
-      var queryURL = "https://api.ebay.com/ws/api.dll/shopping?callname=FindProducts&responseencoding=JSON&callbackname=jsonpcallback&appid=BrandenH-MarvelSi-PRD-6668815a4-427e2463&siteid=0&version=1061&QueryKeywords=marvel%20spiderman%20comic&AvailableItemsOnly=true&MaxEntries=10";
+      var queryURL = "https://api.ebay.com/ws/api.dll/shopping?callname=FindProducts&responseencoding=JSON&callbackname=jsonpresponse&appid=BrandenH-MarvelSi-PRD-6668815a4-427e2463&siteid=0&version=1061&QueryKeywords=marvel%20spiderman%20comic&AvailableItemsOnly=true&MaxEntries=10";
 
 
       // Performing our AJAX GET request
@@ -39,8 +39,8 @@
         method: "GET"
       })
         // After the data comes back from the API
-        .then(function(response) {
-            console.log(response);
+        .then(function(jsonpresponse) {
+            console.log(jsonpresponse);
           // Storing an array of results in the results variable
           var results = response.data;
 
