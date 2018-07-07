@@ -37,12 +37,14 @@
       $.ajax({
         url: queryURL,
         method: "GET"
+        dataType: "jsonp",
+        jsonpCallback: "jsonpresponse"
       })
         // After the data comes back from the API
-        .then(function(jsonpresponse) {
-            console.log(jsonpresponse);
+        .then(function(jsonpCallback) {
+            console.log(jsonpCallback);
           // Storing an array of results in the results variable
-          var results = response.data;
+          var results = jsonpCallback.data;
 
           // Looping over every result item
           for (var i = 0; i < results.length; i++) {
