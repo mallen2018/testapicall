@@ -8,20 +8,13 @@
 
 <body>
   <button data-person="Arnold Schwarzenegger">I'll be back</button>
-  <button data-person="Michael J Fox">
-    My happiness grows in direct proportionto my acceptance,
-    and in inverse proportion to my expectations.
-  </button>
+
   <!-- STEP TWO: between the dashed lines below
         * add three more buttons
         * add a data-person attribute of famous people you know
         * with a quote said by them -->
 
   <!--  -->
-
-  <button data-person="Lucille Ball">
-    Love yourself first and everything else falls into line.
-  </button>
   
 
   <div id="gifs-appear-here">
@@ -35,7 +28,9 @@
       var person = $(this).attr("data-person");
 
       // Constructing a URL to search Giphy for the name of the person who said the quote
-      var queryURL = "http://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&callbackname=jsonpcallback&appid=BrandenH-MarvelSi-PRD-6668815a4-427e2463&siteid=0&version=1067&QueryKeywords=marvel%20spiderman%20comic&AvailableItemsOnly=true&MaxEntries=10";
+      //updated response encoding and version id has to be 1061 2 weeks ago to work. every 2 weeks they change version id's so if any issues might need to update but has to stay a week behind updates to work
+      //update to https was causing mixed error
+      var queryURL = "https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=JSON&callbackname=jsonpcallback&appid=BrandenH-MarvelSi-PRD-6668815a4-427e2463&siteid=0&version=1061&QueryKeywords=marvel%20spiderman%20comic&AvailableItemsOnly=true&MaxEntries=10";
 
 
       // Performing our AJAX GET request
